@@ -1,4 +1,6 @@
-# SIT725 prac5
+# SIT725 prac6
+
+## Unit Testing
 
 To run the example, please run following commands
 

@@ -6,4 +6,6 @@ catRouter.get("/", catController.listCats);
 
 catRouter.post("/", catController.createCat);
 
+catRouter.delete("/:id", catController.deleteCat);
+
 module.exports = catRouter;

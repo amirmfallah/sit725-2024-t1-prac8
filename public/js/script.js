@@ -55,18 +55,17 @@ const submitForm = () => {
   formData.desciption = $("#description").val();
   formData.subtitle = $("#subtitle").val();
 
-  $.post('/api/cats', formData)
-  alert("Cat post successful")
+  $.post("/api/cats", formData);
+  alert("Cat post successful");
 };
 
 const getProjects = () => {
-
-  $.get('/api/cats', (response) => {
+  $.get("/api/cats", (response) => {
     if (response.statusCode == 200) {
       addCards(response.data);
     }
-  })
-}
+  });
+};
 
 $(document).ready(function () {
   $(".materialboxed").materialbox();
@@ -75,4 +74,9 @@ $(document).ready(function () {
   });
   getProjects();
   $(".modal").modal();
+});
+
+let socket = io();
+socket.on("number", (msg) => {
+  console.log("Random Number: " + msg);
 });

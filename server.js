@@ -10,7 +10,19 @@ app.use("/api/cats", catRouter);
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, async () => {
+const http = require("http").createServer(app);
+let io = require("socket.io")(http);
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+  setInterval(() => {
+    socket.emit("number", parseInt(Math.random() * 10));
+  }, 1000);
+});
+
+http.listen(port, async () => {
   console.log("App listening on port", port);
   await connectToDatabase();
 });
